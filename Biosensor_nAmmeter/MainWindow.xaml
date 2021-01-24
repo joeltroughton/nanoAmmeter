@@ -1,0 +1,123 @@
+﻿<Window x:Class="Biosensor_nAmmeter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Biosensor_nAmmeter"
+        xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
+        mc:Ignorable="d"
+        Title="Biosensor nanoAmmeter - v2 [Joel Troughton 2021]" Height="500" Width="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width ="200" />
+            <ColumnDefinition Width ="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Padding="10">
+
+
+
+            <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                <TextBlock Text="Select port" FontWeight="Bold" Margin="0,0,0,0" />
+                <ComboBox Name="portsbox" Text="Select port" SelectionChanged="Portsbox_SelectionChanged" SelectedIndex="1" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="*" />
+                        <ColumnDefinition Width ="*" />
+
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <Button Grid.Column="0" Content="Connect" x:Name="connect" Click="Connect_Click" />
+                    <Button Grid.Column="1" Content="Disconnect" x:Name="disconnect" Click="Disconnect_Click" />
+                </Grid>
+                <TextBox Height="23" TextWrapping="Wrap" Text="Disconnected"  x:Name="status" />
+
+                <TextBlock Text="Measurement control" FontWeight="Bold" Margin="0,10,0,0" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="*" />
+                        <ColumnDefinition Width ="*" />
+                        <ColumnDefinition Width ="*" />
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <Button Grid.Column="0" Content="Start" x:Name="start_measurement" Click="start_measurement_Click" />
+                    <Button Grid.Column="1" Content="Stop" x:Name="stop_measurement" Click="stop_measurement_Click" />
+                    <Button Grid.Column="2" Content="Single" x:Name="single_measurement" Click="single_measurement_Click" />
+
+                </Grid>
+                
+                <TextBox Height="23" TextWrapping="Wrap" Text="Not running"  x:Name="measurement_status" />
+                <TextBlock Text="Biosensor " FontWeight="Bold" Margin="0,10,0,0" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="*" />
+                        <ColumnDefinition Width ="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="PV voltage (mV)"  Margin="0,0,0,0" />
+                    <TextBlock Grid.Column="1" Text="Current (nA)" Margin="0,0,0,0" />
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="*" />
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Height="23" TextWrapping="Wrap" Text="0"  x:Name="voltage" />
+                    <TextBox Grid.Column="1" Height="23" TextWrapping="Wrap" Text="0"  x:Name="current"/>
+
+                </Grid>
+
+                
+
+                <TextBlock Text="Data export " FontWeight="Bold" Margin="0,10,0,0" />
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width ="4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox  Height="23" Margin="0,0,0,0" Grid.Column="0" TextWrapping="Wrap" Text="C:\data"  VerticalAlignment="Center" IsEnabled="True" x:Name="saveDirectoryText"/>
+                    <Button Content="Select" Margin="0,0,0,0" Grid.Column="1" x:Name="saveDirectory"  Click="SaveDirectory_Click"/>
+                </Grid>
+                
+                <Button Content="Export data" x:Name="export" Click="export_Click" />
+                <Button Content="Clear graph" x:Name="clear" Click="clear_Click" />
+
+            </StackPanel>
+            
+            
+
+        </Border>
+
+        <DockPanel Grid.Column="1" Height="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <WpfPlot Name="wpfPlot1" Grid.Row="0" />
+                <WpfPlot Name="wpfPlot2" Grid.Row="1"/>
+
+            </Grid>
+
+
+        </DockPanel>
+
+
+
+    </Grid>
+
+</Window>

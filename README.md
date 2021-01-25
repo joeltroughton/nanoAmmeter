@@ -17,3 +17,5 @@ The voltage applied to the positive side of the biosensor is buffered to the ADC
 
 The ADC is read by a STM32F072 MCU at 128 samples per second where it is fed into a finite impulse response, low pass filter and exported via USB. 
 
+## Acknowledgments
+Thanks to https://github.com/pms67 for the FIR circular buffer implementation
